@@ -1,32 +1,32 @@
 package com.strefakursow.kurs_spring_podstawy.domain.repository;
 
 import com.strefakursow.kurs_spring_podstawy.domain.Quest;
-import jakarta.annotation.PostConstruct;
+import com.strefakursow.kurs_spring_podstawy.utils.Id;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Repository
 public class QuestRepository {
-    List<Quest> quests = new ArrayList<>();
+
+    Map<Integer, Quest> quests = new HashMap<>();
 
     Random random = new Random();
 
     public void createQuest(String description) {
-        quests.add(new Quest(description));
+        int newId = Id.getNewId(quests.keySet());
+        quests.put(newId, new Quest(newId, description));
+    }
+
+    public void deleteQuest(Quest quest) {
+        quests.remove(quest.getId());
     }
 
     public List<Quest> getAll() {
-        return quests;
+        return new ArrayList<>(quests.values());
     }
 
-    @PostConstruct
-    public void init() {
-
-    }
 
     @Scheduled(fixedDelayString = "${questCreationDelay}")
     public void createRandomQuest() {
@@ -38,7 +38,6 @@ public class QuestRepository {
         descriptions.add("Zabić smoka burzy Veldorę.");
 
         String description = descriptions.get(random.nextInt(descriptions.size()));
-        System.out.println("Zlecono zadanie: " + description);
         createQuest(description);
     }
 
@@ -48,5 +47,13 @@ public class QuestRepository {
         return "QuestRepository{" +
                 "quests=" + quests +
                 '}';
+    }
+
+    public void update(Quest quest) {
+        quests.put(quest.getId(), quest);
+    }
+
+    public Quest getQuest(Integer id) {
+        return quests.get(id);
     }
 }

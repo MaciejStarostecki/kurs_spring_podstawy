@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" http-equiv="Content-Type" content="text/html">
+  <title>Title</title>
+  <link href="webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+  <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+  Posiadane złoto: <span th:text="${playerInformation.gold}"/>
+
+  <p th:text="${knight.name}"></p>
+  <p th:text="${knight.age}"></p>
+  <p th:text="${knight.level}"></p>
+</div>
+</body>
+</html>

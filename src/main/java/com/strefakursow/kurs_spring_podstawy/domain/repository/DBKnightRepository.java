@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class DBKnightRepository implements KnightRepository {
@@ -38,13 +39,13 @@ public class DBKnightRepository implements KnightRepository {
     }
 
     @Override
-    public Knight getKnight(String name) {
+    public Optional<Knight> getKnight(String name) {
         System.out.println("Używam bazy danych...");
         return null;
     }
 
     @Override
-    public void deleteKnight(String name) {
+    public void deleteKnight(Integer id) {
         System.out.println("Używam bazy danych...");
     }
 
@@ -52,6 +53,16 @@ public class DBKnightRepository implements KnightRepository {
     @PostConstruct
     public void build() {
 
+    }
+
+    @Override
+    public void createKnight(Knight knight) {
+        System.out.println("Używam bazy danych...");
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return null;
     }
 
 //    public void setName(String name) {

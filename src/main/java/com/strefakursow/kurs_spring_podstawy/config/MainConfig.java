@@ -6,12 +6,14 @@ import com.strefakursow.kurs_spring_podstawy.domain.repository.InMemoryKnightRep
 import com.strefakursow.kurs_spring_podstawy.domain.repository.KnightRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class MainConfig {
 
     @Bean
+    @Primary
     @Profile("Dev")
     public KnightRepository createKnightInMemoRepo() {
         KnightRepository repository = new InMemoryKnightRepository();

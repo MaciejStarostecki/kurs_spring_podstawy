@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" http-equiv="Content-Type" content="text/html">
+  <title>Title</title>
+  <link href="webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+  <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <form class="col-form-label-lg" th:object="${knight}" th:action="@{/assignQuest}" th:method="post">
+
+
+    <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{name}"/>
+    <input type="hidden" th:field="*{age}"/>
+    <input type="hidden" th:field="*{level}"/>
+
+    <div class="input-group-lg">
+      <label class="form-label">Wykonaj zadanie</label>
+      <select th:field="*{quest}">
+        <option th:each="quest : ${notStartedQuest}"
+                th:value="${quest.id}"
+                th:text="${quest.description}"></option>
+      </select>
+    </div>
+
+    <div class="row">
+      <button type="submit" class="btn btn-dark">Wyślij rycerza</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

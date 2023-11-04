@@ -1,9 +1,21 @@
 package com.strefakursow.kurs_spring_podstawy.domain;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Range;
+
 public class Knight {
 
-    private String name = "Lancelot";
-    private int age = 29;
+    private int id;
+
+    @NotNull
+    @Size(min = 3)
+    private String name;
+
+    @NotNull
+    @Range(min = 18, max = 60)
+    private int age;
+    private int level = 1;
     private Quest quest;
 
 
@@ -21,6 +33,22 @@ public class Knight {
         this.quest = quest;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAge() {
         return age;
     }
@@ -29,7 +57,20 @@ public class Knight {
         this.age = age;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Quest getQuest() {
+        return quest;
+    }
+
     public void setQuest(Quest quest) {
+        quest.setStarted(true);
         this.quest = quest;
     }
 
