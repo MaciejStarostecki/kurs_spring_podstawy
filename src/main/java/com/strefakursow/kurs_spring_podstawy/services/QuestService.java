@@ -29,8 +29,14 @@ public class QuestService {
 
     }
 
+
     public List<Quest> getAllNotStartedQuests() {
         return questRepository.getAll().stream().filter(quest -> !quest.isStarted()).collect(Collectors.toList());
+    }
+
+    @Autowired
+    public void setQuestRepository(QuestRepository questRepository) {
+        this.questRepository = questRepository;
     }
 
     public void update(Quest quest) {

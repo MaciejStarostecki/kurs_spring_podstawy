@@ -1,23 +1,37 @@
 package com.strefakursow.kurs_spring_podstawy.domain;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Quest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String description;
 
     private int reward = 100;
 
-    private int lengthInSeconds = 10;
+    protected int lengthInSeconds = 10;
 
     private boolean started = false;
 
     private boolean finnished = false;
 
-    private LocalDateTime startDate;
+    protected LocalDateTime startDate;
 
+
+    public Quest() {}
+
+    public Quest(String description) {
+        this.description = description;
+    }
 
     public Quest(int id, String description) {
         this.id = id;

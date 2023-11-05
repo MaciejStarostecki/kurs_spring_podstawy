@@ -1,11 +1,15 @@
 package com.strefakursow.kurs_spring_podstawy.domain;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
 
+@Entity
 public class Knight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull
@@ -16,6 +20,8 @@ public class Knight {
     @Range(min = 18, max = 60)
     private int age;
     private int level = 1;
+
+    @OneToOne
     private Quest quest;
 
 
@@ -70,7 +76,11 @@ public class Knight {
     }
 
     public void setQuest(Quest quest) {
-        quest.setStarted(true);
+
+        if (quest!=null) {
+            quest.setStarted(true);
+        }
+
         this.quest = quest;
     }
 
