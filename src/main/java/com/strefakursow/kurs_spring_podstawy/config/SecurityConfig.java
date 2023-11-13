@@ -16,18 +16,18 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
 
-        security.authorizeRequests()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/knights")).hasAnyRole("USER", "ADMIN")
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/knight")).hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin(withDefaults());
+            security.authorizeRequests()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/knights")).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/knight")).hasRole("ADMIN")
+                    .anyRequest().authenticated()
+                    .and()
+                    .formLogin(withDefaults());
 
-        return security.build();
+            return security.build();
 
     }
 

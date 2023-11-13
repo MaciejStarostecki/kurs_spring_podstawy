@@ -26,4 +26,9 @@ public class IdsTest {
         Assertions.assertEquals(7, result);
     }
 
+    @Test
+    public void test() {
+        System.out.println("Test");
+    }
+
 }
